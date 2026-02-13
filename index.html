@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arshpreet Singh - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --color-bg: #000000;
+            --color-surface: #1d1d1f;
+            --color-card: #161617;
+            --color-text: #f5f5f7;
+            --color-text-muted: #86868b;
+            --color-accent: #ffffff;
+            --color-accent-secondary: #2997ff;
+            --color-accent-glow: rgba(41, 151, 255, 0.3);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--color-accent-secondary);
+            top: -200px;
+            left: -200px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--color-accent-secondary);
+            bottom: -150px;
+            right: -150px;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(100px, 100px) scale(1.1); }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--color-accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent-secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0 5%;
+            z-index: 2;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 12vw, 9rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 1.5rem;
+            color: var(--color-accent);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            font-weight: 500;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1.2rem 3rem;
+            background: var(--color-accent-secondary);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px var(--color-accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px var(--color-accent-glow);
+        }
+
+        .btn-secondary {
+            padding: 1.2rem 3rem;
+            background: transparent;
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--color-accent);
+            transform: translateY(-3px);
+        }
+
+        section {
+            position: relative;
+            z-index: 2;
+            padding: 3rem 5%;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+            line-height: 1.1;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--color-text-muted);
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .about-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            margin-bottom: 0;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--color-card);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: var(--color-card);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* EXPERIENCE CAROUSEL - ONLY SECTION */
+        .experience-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .experience-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+
+        .experience-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .experience-slide {
+            min-width: 100%;
+            padding: 0 1rem;
+        }
+
+        .experience-card {
+            background: var(--color-card);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .experience-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .experience-header {
+            margin-bottom: 1rem;
+        }
+
+        .experience-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .company-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-accent-secondary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .experience-location {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            text-align: right;
+        }
+
+        .experience-date {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            text-align: right;
+        }
+
+        .experience-highlights {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .experience-highlights li {
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 0.6rem;
+            color: var(--color-text-muted);
+            line-height: 1.5;
+        }
+
+        .experience-highlights li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent-secondary);
+            font-size: 1.2rem;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .carousel-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--color-card);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--color-accent);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: var(--color-accent-secondary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .carousel-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--color-accent-secondary);
+            box-shadow: 0 0 10px var(--color-accent-glow);
+        }
+
+        .experience-counter {
+            color: var(--color-text-muted);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .experience-counter .current {
+            color: var(--color-accent-secondary);
+            font-size: 1.5rem;
+        }
+
+        /* Projects & Extras */
+        .projects-grid, .extra-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card, .extra-card {
+            background: var(--color-card);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover, .extra-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .project-title, .extra-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .project-description, .extra-description {
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .project-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Journey Map */
+        .journey-map {
+            width: 100%;
+            max-width: 1400px;
+            height: 600px;
+            margin: 0 auto;
+            background: var(--color-card);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .location-marker {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .marker-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--color-accent-secondary);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--color-accent-glow);
+        }
+
+        .marker-label {
+            margin-top: 0.5rem;
+            background: var(--color-surface);
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            white-space: nowrap;
+        }
+
+        .location-name {
+            font-weight: 700;
+            color: var(--color-accent);
+            font-size: 1rem;
+        }
+
+        .location-date {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            border-radius: 15px;
+            background: var(--color-surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--color-text-muted);
+        }
+
+        /* Education */
+        .education-timeline {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .education-item {
+            margin-bottom: 3rem;
+            background: var(--color-card);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .education-school {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-degree {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-details {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Contact */
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            padding: 1.5rem 3rem;
+            background: var(--color-card);
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .contact-link:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--color-text-muted);
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(41, 151, 255, 0.1);
+            border: 1px solid rgba(41, 151, 255, 0.3);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-accent-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(41, 151, 255, 0.2);
+            border-color: var(--color-accent-secondary);
+            transform: translateY(-2px);
+        }
+
+        .experience-skills {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .experience-skills-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-tag-small {
+            display: inline-block;
+            padding: 0.4rem 0.9rem;
+            background: rgba(41, 151, 255, 0.08);
+            border: 1px solid rgba(41, 151, 255, 0.2);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--color-accent-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag-small:hover {
+            background: rgba(41, 151, 255, 0.15);
+            border-color: var(--color-accent-secondary);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { gap: 1rem; font-size: 0.85rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .projects-grid, .extra-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-background"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <nav>
+        <div class="logo">Arsh</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#extracurriculars">Leadership</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#creative">Creative</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-label">Business Technology & Data Analytics</div>
+            <h1 class="hero-title">Arshpreet Singh</h1>
+            <p class="hero-subtitle">Transforming Data into Strategic Decisions</p>
+            <div class="hero-cta-group">
+                <a href="#experience" class="btn-primary">View My Work</a>
+                <a href="#contact" class="btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div style="margin-bottom: 2rem;">
+            <span class="section-label">Get to Know Me</span>
+            <h2 class="section-title" style="margin-bottom: 0; font-size: clamp(3rem, 8vw, 6rem);">About Me</h2>
+        </div>
+        
+        <div class="about-grid">
+            <!-- Left Column: Photo -->
+            <div>
+                <div class="about-image">
+                    <img src="IMG_5400.JPG" alt="Arshpreet Singh">
+                </div>
+            </div>
+
+            <!-- Right Column: Bio and Content -->
+            <div>
+                <div class="about-text">
+                    <p>Hey! I'm a Business Technology Management student at the University of Ottawa who gets genuinely excited about turning messy data into actionable insights. I've managed $400K+ budgets, led teams across Canada, and automated processes that saved companies real money.</p>
+                    <p>Whether I'm building Python automation scripts, designing Power BI dashboards, or managing complex projects across multiple stakeholders, I'm all about using technology to solve real problems. Outside of work, you'll find me exploring new countries, cultures, and foods—I'm always planning my next adventure. I also enjoy photography and videography to capture those moments along the way.</p>
+                    <p>When I'm not traveling or working, I'm on the pickleball court. Fair warning: I'm a below-average player, but it's a work in progress and I'm having fun with it.</p>
+                </div>
+                
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 2rem 0 1rem;">Technical Arsenal</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">SQL</div>
+                    <div class="skill-item">Power BI</div>
+                    <div class="skill-item">Excel VBA</div>
+                    <div class="skill-item">Salesforce</div>
+                    <div class="skill-item">Tableau</div>
+                    <div class="skill-item">QuickBooks</div>
+                    <div class="skill-item">Agile/Scrum</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE - CAROUSEL ONLY -->
+    <section id="experience">
+        <span class="section-label">Professional Journey</span>
+        <h2 class="section-title">Experience</h2>
+        <p class="section-subtitle">From healthcare tech to enterprise operations, here's where I've made an impact. Click through to see my journey!</p>
+
+        <div class="experience-container">
+            <div class="experience-carousel">
+                <div class="experience-track" id="experienceTrack">
+                    <div class="experience-slide">
+                        <div class="experience-card">
+                            <div class="experience-header">
+                                <h3 class="experience-title">
+                                    <span>Project Assistant</span>
+                                    <span class="experience-location">Orleans, ON</span>
+                                </h3>
+                                <div class="company-name">
+                                    <span>Orleans Family Health Clinic</span>
+                                    <span class="experience-date">Oct 2025 - Present</span>
+                                </div>
+                            </div>
+                            <ul class="experience-highlights">
+                                <li><strong>Automated OHIP invoice processing using Python</strong>, reducing manual effort by 15 hours/month, improving accuracy to 98%, and accelerating reimbursement cycles</li>
+                                <li><strong>Analyzed 2 years of inventory data with Python and Power BI</strong>, identifying $8K in cost savings and optimizing purchasing patterns through trend analysis and predictive modeling</li>
+                                <li><strong>Designed interactive dashboards for usage patterns and shortage alerts</strong>, enabling proactive inventory management that reduced stockouts by 30% and improved procurement efficiency by 25%</li>
+                                <li><strong>Developed Excel VBA macros and Power Query workflows for financial reporting</strong>, reducing month-end close time by 35% and ensuring 100% compliance with healthcare regulations</li>
+                            </ul>
+                            <div class="experience-skills">
+                                <div class="experience-skills-label">Key Skills:</div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+                                    <span class="skill-tag-small">Python</span>
+                                    <span class="skill-tag-small">Power BI</span>
+                                    <span class="skill-tag-small">Excel VBA</span>
+                                    <span class="skill-tag-small">Power Query</span>
+                                    <span class="skill-tag-small">Data Analysis</span>
+                                    <span class="skill-tag-small">Process Automation</span>
+                                    <span class="skill-tag-small">Dashboard Design</span>
+                                    <span class="skill-tag-small">Predictive Modeling</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experience-slide">
+                        <div class="experience-card">
+                            <div class="experience-header">
+                                <h3 class="experience-title">
+                                    <span>Customer Service & Accounts Manager</span>
+                                    <span class="experience-location">North Bay, ON</span>
+                                </h3>
+                                <div class="company-name">
+                                    <span>Building Blocks</span>
+                                    <span class="experience-date">June 2025 - Aug 2025</span>
+                                </div>
+                            </div>
+                            <ul class="experience-highlights">
+                                <li><strong>Managed portfolio of 25+ accounts worth $200K+</strong>, conducting semi-annual financial reviews to identify growth opportunities and maintaining 100% client retention through proactive relationship management</li>
+                                <li><strong>Implemented Stripe automated billing system for 40+ clients</strong>, improving cash flow predictability by 25%, reducing AR aging by 40%, and streamlining payment processing through API integration</li>
+                                <li><strong>Oversaw AR/AP processes and inventory controls ensuring 100% accuracy</strong> in monthly financial reporting, reconciling complex transactions, and maintaining compliance with audit requirements</li>
+                                <li><strong>Optimized customer service operations through CRM best practices</strong>, reducing response time by 50%, increasing satisfaction scores from 3.8 to 4.6/5.0, and developing SOPs for team efficiency</li>
+                            </ul>
+                            <div class="experience-skills">
+                                <div class="experience-skills-label">Key Skills:</div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+                                    <span class="skill-tag-small">Stripe API</span>
+                                    <span class="skill-tag-small">Account Management</span>
+                                    <span class="skill-tag-small">Financial Reporting</span>
+                                    <span class="skill-tag-small">AR/AP</span>
+                                    <span class="skill-tag-small">CRM Systems</span>
+                                    <span class="skill-tag-small">Client Relations</span>
+                                    <span class="skill-tag-small">Process Optimization</span>
+                                    <span class="skill-tag-small">Invoice Processing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experience-slide">
+                        <div class="experience-card">
+                            <div class="experience-header">
+                                <h3 class="experience-title">
+                                    <span>Project Manager & Community Advisor</span>
+                                    <span class="experience-location">North Bay, ON</span>
+                                </h3>
+                                <div class="company-name">
+                                    <span>Building Blocks</span>
+                                    <span class="experience-date">June 2024 - June 2025</span>
+                                </div>
+                            </div>
+                            <ul class="experience-highlights">
+                                <li><strong>Led Beacon Program advising 50+ small businesses on risk mitigation and security investments</strong>, achieving 95% client retention through data-driven ROI analysis and tailored security strategies across multiple sectors</li>
+                                <li><strong>Managed project budgets ranging $5K-$50K across multiple initiatives</strong>, coordinating cross-sector stakeholders including police, BIAs, and social agencies to ensure on-time, on-budget delivery</li>
+                                <li><strong>Developed executive-ready KPI dashboards in Power BI and Excel</strong>, translating operational and financial data into actionable insights for C-suite presentations and strategic decision-making</li>
+                                <li><strong>Analyzed program performance metrics and client feedback data</strong>, identifying service delivery gaps and implementing process improvements that increased client satisfaction scores by 20%</li>
+                            </ul>
+                            <div class="experience-skills">
+                                <div class="experience-skills-label">Key Skills:</div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+                                    <span class="skill-tag-small">Project Management</span>
+                                    <span class="skill-tag-small">Budget Management</span>
+                                    <span class="skill-tag-small">Power BI</span>
+                                    <span class="skill-tag-small">KPI Development</span>
+                                    <span class="skill-tag-small">Stakeholder Management</span>
+                                    <span class="skill-tag-small">Data Analysis</span>
+                                    <span class="skill-tag-small">ROI Analysis</span>
+                                    <span class="skill-tag-small">Strategic Planning</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experience-slide">
+                        <div class="experience-card">
+                            <div class="experience-header">
+                                <h3 class="experience-title">
+                                    <span>Project Coordinator</span>
+                                    <span class="experience-location">North Bay, ON</span>
+                                </h3>
+                                <div class="company-name">
+                                    <span>ABM Integrated Solutions</span>
+                                    <span class="experience-date">April 2023 - June 2024</span>
+                                </div>
+                            </div>
+                            <ul class="experience-highlights">
+                                <li><strong>Coordinated national projects exceeding $400K in value</strong>, supporting end-to-end project planning, budget forecasting, and performance tracking using Salesforce CRM and Gantt chart methodologies</li>
+                                <li><strong>Optimized scheduling of 80+ field technicians across Canada</strong>, controlling labor costs, maintaining 95% on-time service delivery, and processing $40K+ in weekly invoices with 99.5% accuracy</li>
+                                <li><strong>Served as liaison between clients, dispatch teams, and executives</strong>, translating operational requirements into structured project plans and ensuring stakeholder alignment through effective communication</li>
+                                <li><strong>Improved resource utilization by 15% through data analysis</strong> of technician productivity and route optimization, reducing operational costs and enhancing service delivery efficiency</li>
+                            </ul>
+                            <div class="experience-skills">
+                                <div class="experience-skills-label">Key Skills:</div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+                                    <span class="skill-tag-small">Salesforce CRM</span>
+                                    <span class="skill-tag-small">Gantt Charts</span>
+                                    <span class="skill-tag-small">Resource Allocation</span>
+                                    <span class="skill-tag-small">Invoice Processing</span>
+                                    <span class="skill-tag-small">Performance Tracking</span>
+                                    <span class="skill-tag-small">Data Analysis</span>
+                                    <span class="skill-tag-small">Cross-functional Coordination</span>
+                                    <span class="skill-tag-small">Budget Forecasting</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experience-slide">
+                        <div class="experience-card">
+                            <div class="experience-header">
+                                <h3 class="experience-title">
+                                    <span>Student Research Assistant</span>
+                                    <span class="experience-location">North Bay, ON</span>
+                                </h3>
+                                <div class="company-name">
+                                    <span>Canadore College Research Centre</span>
+                                    <span class="experience-date">Sept 2022 - April 2023</span>
+                                </div>
+                            </div>
+                            <ul class="experience-highlights">
+                                <li><strong>Coordinated TEDx Canadore event managing $50K+ production budget</strong>, overseeing vendor negotiations, aligning multimedia requirements with stakeholder objectives, and ensuring successful execution for 300+ attendees</li>
+                                <li><strong>Conducted AI and VR social-robotics research analyzing user data</strong>, applying statistical methods to evaluate user experience metrics and communicating technical insights through presentations and reports</li>
+                                <li><strong>Designed and delivered digital literacy programs for 40+ seniors</strong>, applying user-centered design principles and conducting impact evaluations that achieved 85% improvement in digital confidence scores</li>
+                                <li><strong>Managed research project administration including participant recruitment and data collection</strong>, collaborating with cross-functional teams to ensure project milestones were achieved on schedule and within budget</li>
+                            </ul>
+                            <div class="experience-skills">
+                                <div class="experience-skills-label">Key Skills:</div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+                                    <span class="skill-tag-small">Event Coordination</span>
+                                    <span class="skill-tag-small">Budget Management</span>
+                                    <span class="skill-tag-small">Research Methods</span>
+                                    <span class="skill-tag-small">Data Collection</span>
+                                    <span class="skill-tag-small">Curriculum Design</span>
+                                    <span class="skill-tag-small">Project Administration</span>
+                                    <span class="skill-tag-small">Stakeholder Communication</span>
+                                    <span class="skill-tag-small">Impact Evaluation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prevBtn" onclick="prevSlide()">‹</button>
+                <div class="carousel-indicators" id="indicators"></div>
+                <div class="experience-counter">
+                    <span class="current" id="currentSlide">1</span> / <span>5</span>
+                </div>
+                <button class="carousel-btn" id="nextBtn" onclick="nextSlide()">›</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="extracurriculars">
+        <span class="section-label">Leadership & Impact</span>
+        <h2 class="section-title">Extracurriculars</h2>
+        <p class="section-subtitle">When I'm not in meetings or building dashboards, I'm leading teams and making campus greener</p>
+
+        <div class="extra-grid">
+            <div class="extra-card">
+                <h3 class="extra-title">Innovation Coordinator</h3>
+                <div style="color: #2997ff; font-weight: 600; margin-bottom: 1rem;">Enactus uOttawa • Sept 2025 - Present</div>
+                <p class="extra-description">Leading UniBin, an AI-powered campus recycling initiative. Developed business case projecting 40% improvement in recycling rates and $15K annual cost savings.</p>
+            </div>
+
+            <div class="extra-card">
+                <h3 class="extra-title">Director of Social Media</h3>
+                <div style="color: #2997ff; font-weight: 600; margin-bottom: 1rem;">UoDesiDancers • Sept 2025 - Present</div>
+                <p class="extra-description">Spearheading social media strategy that increased engagement by 150% and grew follower base by 200+.</p>
+            </div>
+
+            <div class="extra-card">
+                <h3 class="extra-title">Ideas Lab Certificate</h3>
+                <div style="color: #2997ff; font-weight: 600; margin-bottom: 1rem;">Entrepreneurship Hub uOttawa • Jan 2026</div>
+                <p class="extra-description">Completed intensive 2-day hackathon. Developed Ottawa's Green Tank concept using moss and algae as natural air purifiers.</p>
+            </div>
+
+            <div class="extra-card">
+                <h3 class="extra-title">Academic Honors</h3>
+                <div style="color: #2997ff; font-weight: 600; margin-bottom: 1rem;">Canadore College • 2023</div>
+                <p class="extra-description">Recognized for academic excellence during Recreation and Leisure Services diploma program.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <span class="section-label">Featured Work</span>
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">Cool stuff I've built that actually saves money and makes life easier</p>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3 class="project-title">Inventory Analytics Dashboard</h3>
+                <p class="project-description">Built interactive Power BI dashboard analyzing 2 years of inventory data, identifying $8K in cost savings and reducing stockouts by 30%.</p>
+                <div class="project-tags">
+                    <span class="project-tag">Power BI</span>
+                    <span class="project-tag">Predictive Analytics</span>
+                    <span class="project-tag">Cost Optimization</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3 class="project-title">OHIP Invoice Automation</h3>
+                <p class="project-description">Developed Python automation system that reduced manual processing time by 15 hours/month with 98% accuracy.</p>
+                <div class="project-tags">
+                    <span class="project-tag">Python</span>
+                    <span class="project-tag">Process Automation</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3 class="project-title">UniBin - AI Recycling</h3>
+                <p class="project-description">Leading AI-powered recycling solution at uOttawa using gamification. Projected 40% improvement in recycling rates.</p>
+                <div class="project-tags">
+                    <span class="project-tag">AI/ML</span>
+                    <span class="project-tag">Sustainability</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3 class="project-title">Automated Billing System</h3>
+                <p class="project-description">Implemented Stripe-based recurring billing system for 40+ clients, improving cash flow predictability by 25%.</p>
+                <div class="project-tags">
+                    <span class="project-tag">Stripe API</span>
+                    <span class="project-tag">Financial Systems</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="creative">
+        <span class="section-label">Photography & Videography</span>
+        <h2 class="section-title">Creative Work</h2>
+        <p class="section-subtitle">Because life isn't just spreadsheets and Python scripts</p>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">📷 Add Your Photos</div>
+            <div class="gallery-item">📷 Add Your Photos</div>
+            <div class="gallery-item">🎥 Add Your Videos</div>
+            <div class="gallery-item">📷 Add Your Photos</div>
+        </div>
+    </section>
+
+    <section id="education">
+        <span class="section-label">Academic Journey</span>
+        <h2 class="section-title">Education</h2>
+        <p class="section-subtitle">The academic journey that got me here (with honors, of course!)</p>
+
+        <div class="education-timeline">
+            <div class="education-item">
+                <h3 class="education-school">University of Ottawa</h3>
+                <div class="education-degree">Bachelor of Commerce - Business Technology Management</div>
+                <div class="education-details">
+                    Telfer School of Management • Ottawa, ON<br>
+                    Expected Graduation: December 2027<br>
+                    Specializing in data analytics, project management, and technology-driven business solutions
+                </div>
+            </div>
+
+            <div class="education-item">
+                <h3 class="education-school">Canadore College</h3>
+                <div class="education-degree">Diploma - Recreation and Leisure Services</div>
+                <div class="education-details">
+                    North Bay, ON<br>
+                    Academic Honors<br>
+                    Developed strong project coordination and community engagement skills
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-container">
+            <span class="section-label">Get in Touch</span>
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="section-subtitle">Interested in collaborating or discussing opportunities? I'd love to hear from you!</p>
+            
+            <div class="contact-links">
+                <a href="/cdn-cgi/l/email-protection#80e1f2e1f4f4efebe5c0e7ede1e9ecaee3efed" class="contact-link">Email Me</a>
+                <a href="https://linkedin.com/in/arshpreet-singh1525" class="contact-link" target="_blank">LinkedIn</a>
+                <a href="tel:705-825-2039" class="contact-link">Call Me</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Arshpreet Singh. Designed with passion and precision.</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Carousel
+        let currentSlideIndex = 0;
+        const totalSlidesCount = 5;
+        const track = document.getElementById('experienceTrack');
+        const indicatorsContainer = document.getElementById('indicators');
+        const currentSlideDisplay = document.getElementById('currentSlide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        for (let i = 0; i < totalSlidesCount; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'carousel-dot';
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide(i);
+            indicatorsContainer.appendChild(dot);
+        }
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            currentSlideDisplay.textContent = currentSlideIndex + 1;
+            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlideIndex);
+            });
+            prevBtn.disabled = currentSlideIndex === 0;
+            nextBtn.disabled = currentSlideIndex === totalSlidesCount - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < totalSlidesCount - 1) {
+                currentSlideIndex++;
+                updateCarousel();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                updateCarousel();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateCarousel();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+            }
+        });
+    </script>
+</body>
+</html>
