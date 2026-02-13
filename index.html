@@ -99,6 +99,14 @@
             font-size: 1.8rem;
             font-weight: 900;
             color: var(--color-accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-animation {
+            width: 60px;
+            height: 60px;
         }
 
         .nav-links {
@@ -621,12 +629,14 @@
 
         /* Education */
         .education-timeline {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
         }
 
         .education-item {
-            margin-bottom: 3rem;
             background: var(--color-card);
             padding: 2rem;
             border-radius: 15px;
@@ -745,8 +755,10 @@
             .about-grid { grid-template-columns: 1fr; }
             .projects-grid, .extra-grid { grid-template-columns: 1fr; }
             .gallery-grid { grid-template-columns: 1fr; }
+            .education-timeline { grid-template-columns: 1fr; }
         }
     </style>
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js" type="module"></script>
 </head>
 <body>
     <div class="grid-background"></div>
@@ -754,7 +766,10 @@
     <div class="orb orb-2"></div>
 
     <nav>
-        <div class="logo">Arsh</div>
+        <div class="logo">
+            <span>Arsh</span>
+            <dotlottie-wc src="https://lottie.host/6626e922-cc48-4c0f-8b36-852d0b16746f/7gDYOxrFYa.lottie" class="logo-animation" autoplay loop></dotlottie-wc>
+        </div>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
